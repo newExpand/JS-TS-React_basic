@@ -121,3 +121,35 @@ person.printGender();
   // 결과 [1]
   console.log(filter(1, 2, 3));
   ```
+
+### Destructuring
+
+배열에서 특정 원소나 객체에서 특정 속성을 추출하는 편한 방법
+
+- array destructuring
+
+  ```js
+  const numbers = [1, 2, 3];
+  [num1, num2] = numbers;
+
+  // 결과 1 2
+  console.log(num1, num2);
+  ```
+
+  ```js
+  // 중간을 빼고 1 3을 출력하고 싶을 때
+  const numbers = [1, 2, 3];
+  // 중간에 공백을 표기
+  [num1, , num3] = numbers;
+
+  // 결과 1 3
+  console.log(num1, num3);
+  ```
+
+- object destructuring
+
+  ```js
+  {name} = {name: 'Max', age: 28}
+  console.log(name) // Max
+  console.log(age) //undefined
+  ```
