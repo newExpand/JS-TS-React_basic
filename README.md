@@ -82,3 +82,42 @@ const person = new Person();
 person.printMyName();
 person.printGender();
 ```
+
+### Spread & Rest Operators
+
+- spread operators
+
+  기존에 있는 값을 다른 배열이나 객체에 간단하게 추가해줌
+
+  ```js
+  const numbers = [1, 2, 3];
+  const newNumbers = [...numbers, 4];
+
+  // 결과 [1, 2, 3, 4]
+  console.log(newNumbers);
+
+  const person = {
+    name: "Max",
+  };
+
+  const newPerson = {
+    ...person,
+    age: 28,
+  };
+
+  // 결과 {age: 28, name: "Max"}
+  console.log(newPerson);
+  ```
+
+- rest operators
+
+  arguments 를 배열로 뽑아줌
+
+  ```js
+  const filter = (...args) => {
+    return args.filter((el) => el === 1);
+  };
+
+  // 결과 [1]
+  console.log(filter(1, 2, 3));
+  ```
