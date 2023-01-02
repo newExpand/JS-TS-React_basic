@@ -153,3 +153,37 @@ person.printGender();
   console.log(name) // Max
   console.log(age) //undefined
   ```
+
+### React 상기 할 것
+
+- 컴포넌트 제일 밖의 div밖에 사용자 지정 컴포넌트를 넣는 경우 에러가 생긴다
+
+  ```js
+  // 옳은 예:
+  import ExpenseItem from "./components/ExpenseItem";
+
+  function App() {
+    return (
+      <div>
+        <h2>Let's get started!</h2>
+        <ExpenseItem></ExpenseItem>
+      </div>
+    );
+  }
+
+  export default App;
+
+  // 틀린 예:
+  import ExpenseItem from "./components/ExpenseItem";
+
+  function App() {
+    return (
+      <div>
+        <h2>Let's get started!</h2>
+      </div>
+        <ExpenseItem></ExpenseItem>
+    );
+  }
+
+  export default App;
+  ```
