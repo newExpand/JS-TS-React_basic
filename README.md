@@ -187,3 +187,33 @@ person.printGender();
 
   export default App;
   ```
+
+- jsx 동작원리(하위 요소를 감싸줄 jsx요소가 필요한 이유)
+
+  ```js
+  // 리액트에서 jsx 쓰일 때
+  function App() {
+    return (
+      <div>
+        <h2>Let's get started!</h2>
+        <Expenses items={expenses}/>
+      </div>
+    );
+  }
+  // 실제 jsx 동작하는 형태
+    function App() {
+    return React.createElement(
+      'div',
+      {},
+      React.createElement('h2', {}, "Let's get started!")
+      React.createElement(Expenses, {items: expenses})
+    );
+
+  // 하위 요소를 감싸줄 jsx요소가 없어 생기는 에러 예시
+      function App() {
+    return 
+      React.createElement('h2', {}, "Let's get started!"),
+      React.createElement(Expenses, {items: expenses})
+  }
+  ```
+  html과 유사한 형태지만 근본은 자바스크립트 입니다. createElement로 생성된건 배열 요소가 아니며, createElement 한개 이상의 자식 요소를 가질 수 있는 요소 한개를 생성하기 때문에 각각 다른 요소를 감싸 줄 부모 요소가 필요합니다.
