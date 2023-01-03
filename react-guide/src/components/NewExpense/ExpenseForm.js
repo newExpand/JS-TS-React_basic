@@ -14,9 +14,14 @@ const ExpenseForm = () => {
 
   const titleChangeHandler = (e) => {
     // setEnteredTitle(e.target.value);
-    setUserInput({
-        ...userInput,
-        enteredTitle: e.target.value
+    // setUserInput({
+    //     ...userInput,
+    //     enteredTitle: e.target.value
+    // })
+
+    // 변화되는 값을 가장 최신상태의 값으로 유지하는 방법
+    setUserInput((prevState) => {
+        return {...prevState, enteredTitle: e.target.value}
     })
   };
 
