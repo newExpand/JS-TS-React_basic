@@ -211,9 +211,60 @@ person.printGender();
 
   // 하위 요소를 감싸줄 jsx요소가 없어 생기는 에러 예시
       function App() {
-    return 
+    return
       React.createElement('h2', {}, "Let's get started!"),
       React.createElement(Expenses, {items: expenses})
   }
   ```
+
   html과 유사한 형태지만 근본은 자바스크립트 입니다. createElement로 생성된건 배열 요소가 아니며, createElement 한개 이상의 자식 요소를 가질 수 있는 요소 한개를 생성하기 때문에 각각 다른 요소를 감싸 줄 부모 요소가 필요합니다.
+
+- useState 사용하는 이유, 리액트 개발과 일반 스크립트 개발의 차이점
+
+  * 일부 변수가 클릭 이벤트로 값이 변했다 해도 컴포넌트 함수가 다시 실행되지는 않음
+  ```js
+  const ExpenseItem = (props) => {
+    let title = props.title;
+
+    const clickHandler = () => {
+      title = '업데이트!'
+    };
+
+    return (
+      <Card className='expense-item'>
+        <ExpenseDate date={props.date} />
+        <div className='expense-item__description'>
+          <h2>{title}</h2>
+          <ExpenseAmount amount={props.amount} />
+        </div>
+        <button type='button' onClick={clickHandler}>
+          제목 변경
+        </button>
+      </Card>
+    );
+  };
+  ```
+  * React에서 useState는 컴포넌트를 다시 실행시켜줄 트리거 기능
+  ```js
+  const ExpenseItem = (props) => {
+    const [title, setTitle] = useState(props.title);
+
+    const clickHandler = () => {
+      // 'setTitle = 값' 처럼 값을 할당하지 않고 setTitle("값")처럼 함수를 호출해서 새로운 값을 할당 함
+      setTitle("업데이트!");
+    };
+
+    return (
+      <Card className='expense-item'>
+        <ExpenseDate date={props.date} />
+        <div className='expense-item__description'>
+          <h2>{title}</h2>
+          <ExpenseAmount amount={props.amount} />
+        </div>
+        <button type='button' onClick={clickHandler}>
+          제목 변경
+        </button>
+      </Card>
+    );
+  };
+  ```
