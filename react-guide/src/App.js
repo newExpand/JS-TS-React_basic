@@ -1,8 +1,10 @@
-
+import React, { useState } from "react";
 import NewExpense from "./components/NewExpense/NewExpense";
 import Expenses from "./components/Expenses/Expenses";
 
 const App = () => {
+  let [increaseNum, setIncreaseNum] = useState(4);
+
   const expenses = [
     {
       id: "e1",
@@ -25,12 +27,24 @@ const App = () => {
     },
   ];
 
+  const addExpenseHandler = (expense) => {
+    setIncreaseNum(increaseNum++);
+    expense.id = "e" + increaseNum;
+
+    const expenseData = [
+      ...expenses,
+      expense
+    ]
+
+    console.log(expenseData)
+  };
+
   return (
     <div>
-      <NewExpense />
-      <Expenses items={expenses}/>
+      <NewExpense onAddExpense={addExpenseHandler} />
+      <Expenses items={expenses} />
     </div>
   );
-}
+};
 
 export default App;
